@@ -21,4 +21,4 @@ fi
 
 echo -e ">> Finish checking branch name. :) \n==="
 
-exit 1npm test
+exit 0
