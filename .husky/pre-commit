@@ -21,4 +21,4 @@ fi
 
 echo -e ">> Finish checking branch name. :) \n==="
 
-exit 0
+exit 0 
