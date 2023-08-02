@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+mensagem="$(cat $1)"
+padraoNecessario="^(feat|refactore|fix|test|chore|doc|style)\: .*$"
+if ! [[ $mensagem =~ $padraoNecessario ]];
+then
+  echo "- Mensagem do commit fora do padrão -"
+  echo "-"
+  echo "tente algo com algo assim --> Feat: add login button "
+  echo "sufixos suportados: feat|refactore|fix|test|chore|doc|style"
+  echo "-"
+  echo "Seu commit foi:"
+  echo $mensagem
+  echo "-"
+  exit 1
+fi

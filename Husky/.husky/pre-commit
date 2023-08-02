@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# npm run lint
+
+echo -e "===\n>> Validando nome da Branch"
+
+nomeDaBranch=`git rev-parse --abbrev-ref HEAD`
+branchProtegida="^(main|master|develop)"
+tipoDaBranch="^(FIX|FEAT|REFACTORE)\/ING-\d+$"
+
+if [[ "$nomeDaBranch" =~ $branchProtegida ]]
+then
+  echo -e "\n🚫 A branch $nomeDaBranch está bloqueada para commits." && exit 1
+fi
+
+if [[ "$nomeDaBranch" == $tipoDaBranch ]]
+then
+  echo -e "\n🚫 O commit para a branch $nomeDaBranch esta fora do padrão, tente algo assim: <tipo>:<mudança>." && exit 1
+fi
+
+echo -e ">> Finish checking branch name. :) \n==="
+
+exit 0
